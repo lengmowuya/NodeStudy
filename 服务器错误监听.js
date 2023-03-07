@@ -16,5 +16,5 @@ server.on('error',(e)=>{
 
 // 设置超时时间
 server.setTimeout(5000,()=>{
-    console.log('设置超时时间为5s')
+    console.log('连接已经超时')
 });
