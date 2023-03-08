@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冷漠乌鸦个人站点</title>
+    <!-- <link rel="stylesheet" href="css/index.css"> -->
+    <style>
+        #news_list{
+            border:4px solid #eee;
+            background-color:#ccc;
+            border-radius: 6px;
+            margin:0 auto;
+            padding:10px;
+            width:600px;
+            min-height: 300px;
+        }
+        img{
+            width:100px;
+            border-radius: 12px;
+        }
+        ul{
+            padding: 0;
+            margin: 0;
+        }
+        li{
+            display:flex;
+            line-height: 16px;
+            background:#fff;
+            border-radius: 6px;
+            padding:20px;
+            height:26px;
+            margin:6px;
+            align-items: center;
+        }
+
+        .index{
+            background:red;
+            height:20px;
+            line-height: 20px;
+            width:20px;
+            text-align: center;
+            border-radius: 3px;
+            margin-right:4px;
+            color:white;
+        }
+        .title_name{
+            flex-grow: 1;
+            display:flex;
+            justify-content: space-between;
+        }
+        .fire img{
+            width:10px;
+        }
+        .fire{
+            color:orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="news_list">
+        <h1>冷漠乌鸦</h1>
+        <p>哪个更痛，努力的痛还是悔恨的痛？</p>
+        <img src="https://q1.qlogo.cn/g?b=qq&nk=3537168410&src_uin=www.jlwz.cn&s=0" alt="">
+        <img src="images/flower.jpg" alt="">
+        <ul>
+            <% for(var i =0;i<lists.length;i++) { %>
+            <li>
+                <p class="index" style='background: <%= i>2 ? "gray":"" %>'><%= i %></p>
+                <p class="title_name">
+                    <span class="title"><%=lists[i].title %></span>
+                    <span class="fire">
+
+                        <% if(lists[i].up === 1) { %>
+                            <img src="https://img1.baidu.com/it/u=2634289326,105217629&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=831" alt="">
+                        <% } %>
+
+                        <%=lists[i].count %>
+                    </span>
+                </p>
+            </li>
+            <% } %>
+        </ul>
+        <p>静态数据来自<%=source %></p>
+    </div>
+</body>
+</html>
