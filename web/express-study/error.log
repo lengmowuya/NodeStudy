@@ -1,0 +1,33 @@
+
+        =============================
+        错误名: SyntaxError, 
+
+        错误信息:   Unexpected token n in JSON at position 1, 
+
+        错误时间:   Thu Mar 09 2023 23:32:12 GMT+0800 (香港标准时间), 
+
+        错误堆栈:   SyntaxError: Unexpected token n in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at D:\Program\NodeStudy\web\express-study\05.中间件巩固.js:9:27
+    at Layer.handle [as handle_request] (D:\Program\NodeStudy\web\express-study\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Program\NodeStudy\web\express-study\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (D:\Program\NodeStudy\web\express-study\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (D:\Program\NodeStudy\web\express-study\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Program\NodeStudy\web\express-study\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\Program\NodeStudy\web\express-study\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\Program\NodeStudy\web\express-study\node_modules\express\lib\router\index.js:280:10)
+    at expressInit (D:\Program\NodeStudy\web\express-study\node_modules\express\lib\middleware\init.js:40:5), 
+
+        =============================
+    
+        =============================
+        错误名: Error, 
+
+        错误信息:   ENOENT: no such file or directory, open 'D:\Program\NodeStudy\web\express-study\ccc.log', 
+
+        错误时间:   Thu Mar 09 2023 23:38:44 GMT+0800 (香港标准时间), 
+
+        错误堆栈:   Error: ENOENT: no such file or directory, open 'D:\Program\NodeStudy\web\express-study\ccc.log', 
+
+        =============================
+    
