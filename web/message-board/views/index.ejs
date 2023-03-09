@@ -1,0 +1,23 @@
+<%- include('header'); -%>
+
+<h2 class="text-center mt-5">NodeJS留言板</h2>
+<div class="text-center">
+    <a href="./new" class="btn btn-sm btn-danger">我要留言</a>
+</div>
+
+<div class="container mt-5 mb-5">
+    <% if(entries.length){ %>
+        <% entries.forEach(function(entry){%>
+            <div class="card mb-3" style="width: 100%;">
+                <div class="card-body">
+                <h5 class="card-title"><%= entry.title %></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%= entry.published %></h6>
+                <p class="card-text"><%= entry.content %></p>
+                </div>
+            </div>
+        <% }) %>
+    <% }else { %>
+        暂无留言! <a href="/new">去添加一条留言!</a>
+    <% } %>
+</div>
+<%- include('footer'); -%>
