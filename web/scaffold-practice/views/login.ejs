@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录</title>
+    <title>登录账号</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <style>
         a{
             text-decoration:none;
@@ -13,12 +14,22 @@
     </style>
 </head>
 <body>
+    <div class="container">
+        <a href="/">
+             <i class="bi bi-house-fill" style=" color: cornflowerblue;"></i>
+             首页
+        </a>
+    </div>
     <div class="container mt-5 pt-5 text-center ">
-        <h3 class="text-center mb-4">登录页</h3>
+        <h3 class="text-center mb-4">登录账号</h3>
         <form method="post" role="form">
-            <input type="text" class="form-control mb-4" id="title" name="title" placeholder="您的手机号/邮箱" required>
-            <input type="password" class="form-control mb-4" id="title" name="title" placeholder="您的账号密码" required>
-
+            <input type="text" class="form-control mb-4" name="userName" placeholder="您的手机号/邮箱" required>
+            <input type="password" class="form-control mb-4" name="password" placeholder="您的账号密码" required>
+            <p>
+                <a href="/register">
+                    没有账号?去注册->
+                </a>
+            </p>
             <input class="btn btn-primary" type="submit" value="登录账号">
         </form>
 
