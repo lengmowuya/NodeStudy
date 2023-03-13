@@ -17,11 +17,20 @@ router.post('/',(req,res,next)=>{
         loginPwd
     };
     // 3.验证用户是否存在
-    if(!util.isExist(regUser)) {
+    let userObj = util.isExist(regUser);
+    if(!userObj) {
+        // 4.判断密码是否正确
+        if(userObj.password===regUser.loginPwd){
+
+        }else{
+            res.writeHead(403,{'content-type':'text/html;charset=utf-8'});
+            res.end(`您的密码输入错误! <a href="/login">重试登录</a>`);
+        }
+    }else{
         res.writeHead(403,{'content-type':'text/html;charset=utf-8'});
         res.end(`用户账号不存在,请去注册 <a href="/register">去注册页</a>`);
-        return;
-    };
+    }
+    
     // util.users.push(regUser);
     res.redirect('/');
 });
