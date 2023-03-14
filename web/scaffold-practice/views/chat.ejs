@@ -5,8 +5,102 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>聊天界面</title>
+    <style>
+        ul{
+            border:2px solid #ccc;
+            background-color:#eee;
+            padding:30px;
+            border-radius: 10px;
+            margin:20px;
+            overflow: hidden;
+            display:flex;
+            flex-direction: column;
+            list-style: none;
+        }
+        li{
+            margin-bottom:6px;
+        }
+        span{
+            display:inline;
+            border-radius: 10px;
+            padding:10px 14px;
+            letter-spacing: 1px;
+            color:white;
+            /* flex-grow: ; */
+        }
+        .service span{
+            float:left;
+            font-weight: bold;
+            background:orange;
+            float:left;
+        }
+        .user span{
+            background:blue;
+            float:right;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="container">
+        <ul class="chatList">
+            
+        </ul>
+        <!-- <form ></form> -->
+        <textarea class="content" name="" id="" cols="30" rows="10"></textarea>
+        <button class="send">发送</button>
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://unpkg.com/socket.io-client@4.4.1/dist/socket.io.min.js"></script>
+    <script>
+        // 1.建立连接
+        var socket = io.connect('http://localhost:3000/');
+        socket.on('connect',(data)=>{
+            console.log(data);
+            // 1.1 打开通道
+            socket.emit('open');
+
+        });
+
+        // 2. 监听
+        socket.on('message',(data)=>{
+            // console.log(data);
+            dealWithMsg('service',data);
+        });
+
+        // 3.信息处理
+        let dealWithMsg = (className,data)=>{
+            // 3.1创建li标签
+            let $liDom = $('<li>');
+            $liDom.attr({
+                'class':className
+            });
+
+            // 3.1创建li标签
+            let $span = $('<span>');
+            $span.attr({
+                'class':'chat-msg'
+            });
+            $span.text(data);
+            $liDom.append($span);
+
+            $('.chatList').append($liDom);
+        }
+        // 发送信息
+        $('.send').on('click',()=>{
+            // 1.获取内容
+            let msg = $('.content').val();
+            if(!msg){
+                alert('请不要为空');
+                return;
+            }
+            // 2.显示到界面
+            dealWithMsg('user',msg);
+            // 3.发送数据给服务器
+            socket.emit('message',msg);
+            // 4.清空输入框
+            $('.content').val('');
+        })
+    </script>
 </body>
 </html>
