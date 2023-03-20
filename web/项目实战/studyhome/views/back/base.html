@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理系统</title>
+    <!-- 留个插槽,用于放置link文件 -->
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+    <!-- 引入头部板块 -->
+    {% include "back/header.html" %}
+    <div class="main">
+        <!-- 引入侧边板块 -->
+        {% include "back/aside.html" %}
+
+        <!-- 留个插槽,用于页面HTML-->
+        {% block html %}
+        
+        {% endblock %}
+
+    </div>
+    <!-- 留个插槽,用于放置script文件和代码 -->
+    {% block script %}
+    
+    {% endblock %}
+</body>
+</html>

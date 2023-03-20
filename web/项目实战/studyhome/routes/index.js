@@ -16,4 +16,12 @@ router.get('/',(req,res)=>{
 router.get('/web',(req,res)=>{
     res.render('web/index.html');
 })
+
+router.get('/web/res',(req,res)=>{
+    res.render('web/resource.html');
+})
+
+router.get('/web/res_c',(req,res)=>{
+    res.render('web/resource_content.html');
+})
 export default router;
