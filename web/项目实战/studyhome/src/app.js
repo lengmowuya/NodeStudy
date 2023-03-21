@@ -19,6 +19,10 @@ nunjucks.configure(config.viewsPath,{
 
 // 3.挂载路由
 app.use(indexRouter);
+// 404页面配置
+app.use((req,res)=>{
+    res.render('404.html');
+});
 
 
 
