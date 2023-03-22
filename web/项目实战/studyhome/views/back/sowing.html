@@ -1,0 +1,63 @@
+<!-- 继承base.html的基础模板 -->
+{% extends "back/base.html" %}
+
+{% block css %}
+<style></style>
+{% endblock %}
+
+
+{% block html %}
+    <div class="content">
+        <h3>新增轮播图页</h3>
+        <hr>
+        <form action="http://localhost:3000/sowing/api/add" method="post" enctype="multipart/form-data">
+            <label>
+                活动标题
+                <input type="text" name="title">
+            </label>
+            <br>
+            <label>
+                活动轮播图
+                <input type="file" name="UploadImg" >
+            </label>
+            <br>
+            <input class="submitBtn" type="button" value="提交">
+        </form>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+<script>
+    // $('form').on('submit',()=>{
+    //     $.ajax({
+    //         url:$(this).attr('action'),
+    //         type:$(this).attr('method'),
+    //         // 服务端接收FormData,所以客户端也要创建FormData
+    //         data:new FormData($(this)[0]),
+    //         // 不要处理转化成一个查询字符串
+    //         processData:false,
+    //         contentType:false,
+    //         success:(data)=>{
+    //             console.log(data);
+    //         }
+    //     });
+    //     return false;
+    // })
+    $('.submitBtn').on('click',()=>{
+        var $form = $('form');
+        $.ajax({
+            url:$form.attr('action'),
+            type:$form.attr('method'),
+            // 服务端接收FormData,所以客户端也要创建FormData
+            data:new FormData($form[0]),
+            // 不要处理转化成一个查询字符串
+            processData:false,
+            contentType:false,
+            success:(data)=>{
+                console.log(data);
+            }
+        });
+    })
+</script>
+{% endblock %}

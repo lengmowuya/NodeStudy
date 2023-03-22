@@ -1,7 +1,7 @@
-// const express = require('express')
 import express from 'express'
 import config from './config'
 import nunjucks from 'nunjucks'
+
 import indexRouter from './../routes/index'
 import sowingRouter from './../routes/sowing'
 
@@ -9,6 +9,8 @@ let app = express();
 
 // 1.配置公共资源访问路径.
 app.use(express.static(config.publicPath));
+// 1.配置公共资源访问路径.
+app.use(express.static(config.dirPath));
 // app.use(express.static(config.viewsPath));
 
 // 2.配置中间件
