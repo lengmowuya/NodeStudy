@@ -3,6 +3,7 @@ import express from 'express'
 import config from './config'
 import nunjucks from 'nunjucks'
 import indexRouter from './../routes/index'
+import sowingRouter from './../routes/sowing'
 
 let app = express();
 
@@ -19,6 +20,7 @@ nunjucks.configure(config.viewsPath,{
 
 // 3.挂载路由
 app.use(indexRouter);
+app.use(sowingRouter);
 // 404页面配置
 app.use((req,res)=>{
     res.render('404.html');
@@ -27,5 +29,5 @@ app.use((req,res)=>{
 
 
 app.listen(3000,()=>{
-    console.log('服务器运行成功...');
+    console.log('Web服务器运行成功...');
 })

@@ -1,25 +1,25 @@
 import mongoose from 'mongoose';
 mongoose.connect('mongodb://localhost/college',{useNewUrlParser:true});
 mongoose.connection.on('open',()=>{
-    console.log('数据库连接成功!');
+    console.log('MongoDB数据库连接成功...');
 });
-mongoose.on('error',(err)=>{
-    console.log('数据库连接失败!');
+mongoose.connection.on('error',(err)=>{
+    console.log('MongoDB数据库连接失败!');
     throw err;
 })
 
 // 创建轮播图的模式对象
 const sowingSchema = mongoose.Schema({
     // 图片名称
-    image_title:{type:String,required:ture},
+    image_title:{type:String,required:true},
     // 图片链接
-    image_link:{type:String,required:ture},
+    image_link:{type:String,required:true},
     // 图片路径
-    image_url:{type:String,required:ture},
+    image_url:{type:String,required:true},
     // 上架时间
-    start_time:{type:String,required:ture},
+    start_time:{type:String},
     // 下架时间
-    end_time:{type:String,required:ture},
+    end_time:{type:String},
     // 最后编辑时间
     edit_time:{type:String,default:Date.now()},
     // 添加时间
