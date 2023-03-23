@@ -4,6 +4,7 @@ import nunjucks from 'nunjucks'
 
 import indexRouter from './../routes/index'
 import sowingRouter from './../routes/sowing'
+import body_parser from './../middle_wares/body_parser'
 
 let app = express();
 
@@ -19,6 +20,9 @@ nunjucks.configure(config.viewsPath,{
     express:app,
     noCache:true
 });
+
+// 挂载请求统一前置处理器
+app.use(body_parser);
 
 // 3.挂载路由
 app.use(indexRouter);

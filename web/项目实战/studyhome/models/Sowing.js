@@ -11,7 +11,7 @@ mongoose.connection.on('error',(err)=>{
 // 创建轮播图的模式对象
 const sowingSchema = mongoose.Schema({
     // 图片名称
-    image_title:{type:String,required:true},
+    sowing_title:{type:String,required:true},
     // 图片链接
     image_link:{type:String,required:true},
     // 图片路径
@@ -21,9 +21,9 @@ const sowingSchema = mongoose.Schema({
     // 下架时间
     end_time:{type:String},
     // 最后编辑时间
-    edit_time:{type:String,default:Date.now()},
+    edit_time:{type:Date,default:Date.now()},
     // 添加时间
-    create_time:{type:String,default:Date.now()},
+    create_time:{type:Date,default:Date.now()},
 });
 
 const Sowing = mongoose.model('Sowing',sowingSchema);
