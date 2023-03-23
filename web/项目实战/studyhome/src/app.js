@@ -1,10 +1,13 @@
+// 引入包
 import express from 'express'
 import config from './config'
 import nunjucks from 'nunjucks'
-
+// 引入路由
 import indexRouter from './../routes/index'
 import sowingRouter from './../routes/sowing'
+// 引入中间件
 import body_parser from './../middle_wares/body_parser'
+import error_log from './../middle_wares/error_log'
 
 let app = express();
 
@@ -27,10 +30,13 @@ app.use(body_parser);
 // 3.挂载路由
 app.use(indexRouter);
 app.use(sowingRouter);
+
 // 404页面配置
 app.use((req,res)=>{
     res.render('404.html');
 });
+// 4.挂载全局错误日志中间件
+app.use(error_log);
 
 
 
