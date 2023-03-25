@@ -9,11 +9,12 @@ export default (error,req,res,next)=>{
         // 错误堆栈
         error_stack:error.stack,
     });
-    error_log.save((err,result)=>{
-        res.json({
-            status:500,
-            result:'服务器内部错误!请联系管理员!',
-            message:error.message
+    error_log.save()
+        .then(()=>{
+            res.json({
+                status:500,
+                result:'服务器内部错误!请联系管理员!',
+                message:error.message
+            })
         })
-    })
 }

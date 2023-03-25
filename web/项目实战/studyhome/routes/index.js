@@ -5,9 +5,7 @@ const router = express.Router({});
 router.get('/back',(req,res)=>{
     res.render('back/index.html');
 });
-router.get('/back/sowing',(req,res)=>{
-    res.render('back/sowing.html');
-})
+
 
 // *************前端页面路由********************
 router.get('/',(req,res)=>{
