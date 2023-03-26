@@ -71,7 +71,6 @@ router.get('/sowing/api/list',(req,res,next)=>{
 // 根据ID获取一条轮播图
 router.get('/sowing/api/singer/:sowingId',(req,res,next)=>{
     let id = req.params.sowingId;
-    console.log(id);
     // 判断ID是否合法
     if(id.length > 26){
         res.json({
@@ -147,11 +146,38 @@ router.post('/sowing/api/editor',(req,res,next)=>{
         })
 })
 // 根据ID删除轮播图
+router.delete('/sowing/api/delete/:sowingId',(req,res,next)=>{
+    let id = req.params.sowingId;
+    // 判断ID是否合法
+    if(id.length > 26){
+        res.json({
+            status:401,
+            result:'您请求的ID不合法:'+id
+        });
+        return;
+    }
+    let objectId = new mongoose.Types.ObjectId(id);
+    Sowing.deleteOne({_id:id})
+        .then(doc=>{
+            res.json({
+                status:200,
+                result:'成功删除轮播图!'
+            })
+        }).catch(err=>{
+            return next(err);
+        })
+})
 
 // ******************页面路由********************
 // 轮播图列表页面
 router.get('/back/sowing_list',(req,res,next)=>{
-    res.render('back/sowing_list.html');
+    // 获取所有轮播图数据
+    Sowing.find().then(sowings=>{
+        // 发送渲染页面.
+        res.render('back/sowing_list.html',{sowings});
+    }).catch(err=>{
+        return next(err);
+    })
 });
 // 新增轮播图页面
 router.get('/back/sowing_add',(req,res)=>{

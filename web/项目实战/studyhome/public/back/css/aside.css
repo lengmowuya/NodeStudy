@@ -2,6 +2,7 @@
   width: 160px;
   background: #333;
   display: flex;
+  flex-shrink: 0;
 }
 #Aside ul {
   flex-grow: 1;

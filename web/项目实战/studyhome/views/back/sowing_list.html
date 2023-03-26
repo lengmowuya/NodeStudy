@@ -2,14 +2,54 @@
 {% extends "back/frame/base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="./css/index.css">
+<link rel="stylesheet" href="./css/sowing_list.css">
 {% endblock %}
 
 
 {% block html %}
 <div class="content">
-    <h3>轮播图列表页面</h3>
+    <div class="page_header">
+        <h1>轮播图列表-管理页面</h1>
+        <button class="add_sowing"><a href="/back/sowing_add">新增轮播图</a></button>
+    </div>
     <hr>
+    <table>
+        <thead>
+            <tr>
+                <td>序号</td>
+                <td>id</td>
+                <td>轮播图名称</td>
+                <td>图片缩略图</td>
+                <td>跳转链接</td>
+                <td>上架时间</td>
+                <td>下架时间</td>
+                <td>创建时间</td>
+                <td>最近编辑</td>
+                <td>功能操作</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sowing in sowings %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{sowing._id}}</td>
+                <td>{{sowing.sowing_title}}</td>
+                <td>
+                    <img src="{{sowing.image_url}}" alt="">
+                </td>
+                <td>{{sowing.image_link}}</td>
+                <td>{{sowing.start_time}}</td>
+                <td>{{sowing.end_time}}</td>
+                <td>{{sowing.create_time}}</td>
+                <td>{{sowing.edit_time}}</td>
+                <td>
+                    <button class="edit btn btn-primary btn-sm">编辑</button>
+                    <button class="delete btn btn-danger btn-sm">删除</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
 

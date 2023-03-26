@@ -2,39 +2,58 @@
 {% extends "back/frame/base.html" %}
 
 {% block css %}
-<style></style>
+<style>
+    .content{
+        flex-grow: 1;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height:100%;
+        background-color:#f9f9f9;
+    }
+    .page_center{
+        width:800px;
+        background:#fff;
+        border:1px solid #ccc;
+        border-radius:6px;
+        padding:10px;
+        min-height: 300px;
+    }
+</style>
 {% endblock %}
 
 
 {% block html %}
     <div class="content">
-        <h3>新增轮播图页</h3>
-        <hr>
-        <form action="http://localhost:3000/sowing/api/add" method="post" 
-        enctype="application/x-www-form-urlencoded">
-            <!-- enctype="multipart/form-data"> -->
-            <label>
-                轮播图标题
-                <input type="text" name="sowing_title" required>
-            </label>
-            <br>
-            <label>
-                上架时间
-                <input type="date" name="start_time" required>
-            </label>
-            <br>
-            <label>
-                结束时间
-                <input type="date" name="end_time" required>
-            </label>
-            <br>
-            <label>
-                轮播图图片
-                <input type="file" name="UploadImg" >
-            </label>
-            <br>
-            <input class="submitBtn" type="button" value="提交">
-        </form>
+        <div class="page_center container">
+            <h3>新增轮播图页</h3>
+            <hr>
+            <form action="http://localhost:3000/sowing/api/add" method="post" 
+            enctype="application/x-www-form-urlencoded">
+                <!-- enctype="multipart/form-data"> -->
+                <label>
+                    轮播图标题
+                    <input type="text" name="sowing_title" required>
+                </label>
+                <br>
+                <label>
+                    上架时间
+                    <input type="date" name="start_time" required>
+                </label>
+                <br>
+                <label>
+                    结束时间
+                    <input type="date" name="end_time" required>
+                </label>
+                <br>
+                <label>
+                    轮播图图片
+                    <input type="file" name="UploadImg" >
+                </label>
+                <br>
+                <input class="submitBtn btn btn-primary pull-right" type="button" value="提交">
+            </form>
+        </div>
     </div>
 {% endblock %}
 

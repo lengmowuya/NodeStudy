@@ -1,0 +1,42 @@
+.content {
+  padding: 10px;
+}
+.page_header {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+}
+.page_header .add_sowing {
+  background: tomato;
+  border-radius: 6px;
+  outline: none;
+  border: none;
+}
+.page_header .add_sowing a {
+  text-decoration: none;
+  color: #fff;
+  padding: 24px;
+  line-height: 24px;
+  font-size: 20px;
+}
+tr td {
+  overflow: hidden;
+  max-width: 160px;
+  text-align: center;
+  font-size: 14px;
+  border: 2px solid #fff;
+}
+table {
+  min-width: 1000px;
+}
+thead td {
+  background: #333;
+  color: #fff;
+  padding: 4px;
+  line-height: 32px;
+  user-select: none;
+}
+tbody td {
+  background: #eee;
+  padding: 4px;
+}
