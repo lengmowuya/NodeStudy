@@ -58,11 +58,10 @@ router.post('/sowing/api/add',(req,res)=>{
 // 获取所有轮播图
 router.get('/sowing/api/list',(req,res,next)=>{
     Sowing.find({},{'start_time':0,'end_time':0})
-        .then(docs=>{
-            // console.log(docs);
+        .then(doc=>{
             res.json({
                 status:200,
-                result:docs
+                result:doc
             })
         }).catch(err=>{
             return next(err);
@@ -70,50 +69,77 @@ router.get('/sowing/api/list',(req,res,next)=>{
 });
 
 // 根据ID获取一条轮播图
-router.get('/sowing/api/list',(req,res,next)=>{
-    Sowing.find({},{'start_time':0,'end_time':0})
-        .then(docs=>{
-            // console.log(docs);
-            res.json({
-                status:200,
-                result:docs
-            })
-        }).catch(err=>{
-            return next(err);
-        })
-});
-
-// 根据ID修改轮播图
 router.get('/sowing/api/singer/:sowingId',(req,res,next)=>{
-    if(req.params.sowingId.length > 26){
+    let id = req.params.sowingId;
+    console.log(id);
+    // 判断ID是否合法
+    if(id.length > 26){
         res.json({
             status:401,
-            result:'您请求的ID不合法:'+req.params.sowingId
+            result:'您请求的ID不合法:'+id
         });
         return;
     }
-    let objectId;
-    try{
-        objectId = new mongoose.Types.ObjectId(req.params.sowingId);
-    }catch(err){
-        res.json({
-            status:401,
-            result:'您请求的ID不合法:'+req.params.sowingId
-        })
-        return next(err);
-    }
+    let objectId = new mongoose.Types.ObjectId(id);
     Sowing.findById(objectId)
-        .then(docs=>{
-            if(docs.length<=0){
+        .then(doc=>{
+            if(doc.length<=0){
                 res.json({
                     status:404,
-                    result:'找不到指定ID轮播图:'+req.params.sowingId
+                    result:'找不到指定ID轮播图:'+id
                 })
             }else{
                 res.json({
                     status:200,
-                    result:docs
+                    result:doc
                 })
+                
+            }
+        }).catch(err=>{
+
+            return next(err);
+        })
+})
+
+// 根据ID修改轮播图
+router.post('/sowing/api/editor',(req,res,next)=>{
+    let id = req.body.id;
+    let body = req.body;
+    // 判断ID是否合法
+    if(id.length > 26){
+        res.json({
+            status:401,
+            result:'您请求的ID不合法:'+id
+        });
+        return;
+    }
+    let objectId = new mongoose.Types.ObjectId(id)
+    Sowing.findById(objectId)
+        .then(doc=>{
+            if(doc.length<=0){
+                res.json({
+                    status:404,
+                    result:'找不到指定ID轮播图:'+id
+                })
+            }else{
+                // 2.修改轮播图数据
+                doc.sowing_title = body.sowing_title;
+                doc.image_url = body.image_url;
+                doc.image_link = body.image_link;
+                doc.start_time = body.start_time;
+                doc.end_time = body.end_time;
+                // 3.保存sowing
+                // 如果_id是一样的,就不会新增,而是修改已有数据.
+                doc.save()
+                    .then(()=>{
+                        res.json({
+                            status:200,
+                            result:'修改成功'
+                        })
+                    })
+                    .catch(err=>{
+                        return next(err);
+                    })
             }
         }).catch(err=>{
 
