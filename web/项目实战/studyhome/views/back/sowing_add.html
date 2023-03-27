@@ -29,11 +29,15 @@
             <h3>新增轮播图页</h3>
             <hr>
             <form action="http://localhost:3000/sowing/api/add" method="post" 
-            enctype="application/x-www-form-urlencoded">
+            enctype="multipart/form-data">
                 <!-- enctype="multipart/form-data"> -->
                 <label>
                     轮播图标题
                     <input type="text" name="sowing_title" required>
+                </label>
+                <label>
+                    跳转链接
+                    <input type="text" name="image_link" required>
                 </label>
                 <br>
                 <label>
@@ -48,7 +52,7 @@
                 <br>
                 <label>
                     轮播图图片
-                    <input type="file" name="UploadImg" >
+                    <input type="file" name="UploadImg" required >
                 </label>
                 <br>
                 <input class="submitBtn btn btn-primary pull-right" type="button" value="提交">
@@ -61,18 +65,26 @@
 <script>
     $('.submitBtn').on('click',()=>{
         var $form = $('form');
-        console.log($form.serialize());
+        // console.log($form.serialize());
         $.ajax({
             url:$form.attr('action'),
             type:$form.attr('method'),
             // 服务端接收FormData,所以客户端也要创建FormData
-            // data:new FormData($form[0]),
-            data:$form.serialize(),
+            data:new FormData($form[0]),
+            // 以标准URL编码形式的字符串进行传递.
+            // data:$form.serialize(),
             // 不要处理转化成一个查询字符串
             processData:false,
+            // 不写入contentType
             contentType:false,
             success:(data)=>{
-                console.log(data);
+                // console.log(data);
+                if(data.status === 200){
+                    alert('轮播图添加成功!');
+                    window.location.href = '/back/sowing_list';
+                }else{
+                    alert('轮播图添加失败!\n\n'+'提醒:'+data.result);
+                }
             }
         });
     })
