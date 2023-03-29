@@ -1,0 +1,86 @@
+<!-- 继承base.html的基础模板 -->
+{% extends "back/frame/base.html" %}
+
+{% block css %}
+<style>
+    .content{
+        flex-grow: 1;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height:100%;
+        background-color:#f9f9f9;
+    }
+    .page_center{
+        width:800px;
+        background:#fff;
+        border:1px solid #ccc;
+        border-radius:6px;
+        padding:10px;
+        min-height: 300px;
+    }
+</style>
+{% endblock %}
+
+
+{% block html %}
+    <div class="content">
+        <div class="page_center container">
+            <h3>编辑轮播图页<span></span></h3>
+            <hr>
+            <form action="http://localhost:3000/sowing/api/add" method="post" 
+            enctype="multipart/form-data">
+                <!-- enctype="multipart/form-data"> -->
+                <label>
+                    轮播图标题
+                    <input type="text" name="sowing_title" required>
+                </label>
+                <br>
+                <label>
+                    跳转链接
+                    <input type="text" name="image_link" required>
+                </label>
+                <br>
+                <label>
+                    上架时间
+                    <input type="date" name="start_time" required>
+                </label>
+                <br>
+                <label>
+                    结束时间
+                    <input type="date" name="end_time" required>
+                </label>
+                <br>
+                <label>
+                    轮播图图片
+                    <input type="file" name="UploadImg" required >
+                </label>
+                <br>
+                <input class="submitBtn btn btn-primary pull-right" type="button" value="确认修改">
+                <input class="submitBtn btn btn-secondary pull-right" type="button" value="取消">
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+<script>
+   // 1.获取id值
+   let url = window.location.search,sowingId = '';
+   if(url.indexOf('?') !== -1){
+    sowingId = url.substr(url.indexOf('=')+1);
+   }
+   console.log(sowingId);
+
+    // 2.发起ajax请求
+    // 注意:如果不是通过form表单发起请求,路径一定要补全.
+    $.ajax({
+        url:'http://localhost:3000/sowing/api/singer/'+sowingId,
+        type:'get',
+        dataType:'json',
+        success:(data)=>{
+            console.log(data);
+        }
+    })
+</script>
+{% endblock %}

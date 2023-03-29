@@ -186,4 +186,8 @@ router.get('/back/sowing_list',(req,res,next)=>{
 router.get('/back/sowing_add',(req,res)=>{
     res.render('back/sowing_add.html');
 })
+// 新增轮播图页面
+router.get('/back/sowing_edit',(req,res)=>{
+    res.render('back/sowing_edit.html');
+})
 export default router;

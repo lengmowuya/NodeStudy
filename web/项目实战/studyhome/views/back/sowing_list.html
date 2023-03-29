@@ -43,8 +43,9 @@
                 <td>{{sowing.create_time}}</td>
                 <td>{{sowing.edit_time}}</td>
                 <td>
-                    <button class="edit btn btn-primary btn-sm">编辑</button>
-                    <button class="delete btn btn-danger btn-sm">删除</button>
+                    <!-- H5新特性,可以存储值 -->
+                    <a data-id="{{sowing._id}}" class="btn-edit btn btn-primary btn-sm">编辑</a>
+                    <a class="btn-delete btn btn-danger btn-sm">删除</a>
                 </td>
             </tr>
             {% endfor %}
@@ -55,5 +56,13 @@
 
 
 {% block script %}
-<script></script>
+<script>
+    $(".btn-edit").on('click',function(){
+        let sowingId = $(this).attr('data-id');
+        // 问题:如何跨页面传递值
+        window.location.href = '/back/sowing_edit?sid='+sowingId;
+    })
+
+
+</script>
 {% endblock %}
